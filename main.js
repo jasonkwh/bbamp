@@ -15,7 +15,11 @@ let win;
 function createWindow () {
     win = new BrowserWindow({
         width:300,
-        height:600,
+        height:75,
+        frame:false,
+        resizable:false,
+        maximizable:false,
+        alwaysOnTop:true,
         backgroundColor:'#262626',
         titleBarStyle:'hidden'
     });
