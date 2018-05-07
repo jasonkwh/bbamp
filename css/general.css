@@ -1,0 +1,48 @@
+body {
+    -webkit-app-region:drag;
+}
+.controlbtns {
+    background-color:transparent;
+    border-color:#e74c3c;
+    color:#e74c3c;
+    border-radius:30px;
+    width:25px;
+    height:25px;
+}
+.controlbtns:hover {
+    background-color:#e74c3c;
+    color:#262626;
+}
+.playbtn {
+    background-color:transparent;
+    border-color:#e74c3c;
+    color:#e74c3c;
+    border-radius:30px;
+    width:35px;
+    height:35px;
+}
+.playbtn:hover {
+    background-color:#e74c3c;
+    color:#262626;
+}
+.progressslider {
+    -webkit-appearance:none;
+    appearance:none;
+    position:relative;
+    top:21px;
+    width:150px;
+    height:2px;
+    background-color:#91312a;
+}
+.progressslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px;
+    height: 13px;
+    background-color:#e74c3c;
+}
+.progressslider::-moz-range-thumb {
+    width: 4px;
+    height: 13px;
+    background-color:#e74c3c;
+}
