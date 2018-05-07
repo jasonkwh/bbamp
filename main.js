@@ -1,16 +1,16 @@
-const {app, BrowserWindow, Menu} = require('electron');
-const path = require('path');
-const url = require('url');
-const shell = require('electron').shell;
+const {app, BrowserWindow, Menu} = require('electron')
+const path = require('path')
+const url = require('url')
+const shell = require('electron').shell
 
 //Audio Decoders
-var AV = require('av');
-require('flac.js');
-require('ogg.js');
-require('opus.js');
-require('vorbis.js');
+var AV = require('av')
+require('flac.js')
+require('ogg.js')
+require('opus.js')
+require('vorbis.js')
 
-let win;
+let win
 
 function createWindow () {
     win = new BrowserWindow({
@@ -22,19 +22,19 @@ function createWindow () {
         alwaysOnTop:true,
         backgroundColor:'#262626',
         titleBarStyle:'hidden'
-    });
+    })
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'src/index.html'),
         protocol: 'file:',
         slashes: true
-    }));
+    }))
 
-    win.webContents.openDevTools();
+    win.webContents.openDevTools()
 
     win.on('closed', () => {
         win = null
-    });
+    })
 
     var menu = Menu.buildFromTemplate([
         {
@@ -63,21 +63,21 @@ function createWindow () {
                 }
             ]
         }
-    ]);
+    ])
 
-    Menu.setApplicationMenu(menu);
+    Menu.setApplicationMenu(menu)
 }
 
-app.on('ready', createWindow);
+app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
-});
+})
 
 app.on('activate', () => {
     if (win === null) {
         createWindow()
     }
-});
+})
