@@ -53,3 +53,12 @@ body {
     color:#e74c3c;
     width:20px;
 }
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+input[type="range"],
+button,
+textarea {
+    -webkit-app-region: no-drag;
+}

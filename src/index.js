@@ -16,6 +16,7 @@ playlistBtn.addEventListener('click', function(event) {
         height:200,
         frame:false,
         resizable:false,
+        minimizable:false,
         maximizable:false,
         alwaysOnTop:true,
         backgroundColor:'#262626',
