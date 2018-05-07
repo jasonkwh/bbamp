@@ -1,0 +1,21 @@
+{
+  "name": "bbamp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Jason Huang",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^2.0.0"
+  },
+  "dependencies": {
+    "av": "^0.4.9",
+    "flac.js": "^0.2.1",
+    "ogg.js": "^0.1.0",
+    "opus.js": "^0.1.1",
+    "vorbis.js": "^0.1.1"
+  }
+}
