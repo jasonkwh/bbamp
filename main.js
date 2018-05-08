@@ -2,6 +2,7 @@ const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
 const shell = require('electron').shell
+const ipc = require('electron').ipcMain
 
 //Audio Decoders
 var AV = require('av')
