@@ -11,11 +11,13 @@ require('opus.js')
 require('vorbis.js')
 
 let win
+let winwidth = 300
+let winheight = 75
 
 function createWindow () {
     win = new BrowserWindow({
-        width:300,
-        height:75,
+        width:winwidth,
+        height:winheight,
         frame:false,
         resizable:false,
         maximizable:false,
