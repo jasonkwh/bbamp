@@ -12,6 +12,34 @@ let winheight = 250
 let curwinheight = 75
 var playlistwiny
 
+function fadeIn(el, time) {
+    el.style.opacity = 0;
+    var last = +new Date();
+    var tick = function() {
+        el.style.opacity = +el.style.opacity + (new Date() - last) / time;
+        last = +new Date();
+
+        if (+el.style.opacity < 1) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        }
+    };
+    tick();
+}
+
+function fadeOut(el, time) {
+    el.style.opacity = 1;
+    var last = new Date();
+    var tick = function() {
+        el.style.opacity = el.style.opacity - (new Date() - last) / time;
+        last = new Date();
+
+        if (el.style.opacity > 0) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        }
+    };
+    tick();
+}
+
 document.onmouseup = (event) => {
     if(win!=null) {
         if(current_win.getPosition()[1]>(window.screen.height/2)) {
@@ -21,6 +49,16 @@ document.onmouseup = (event) => {
         }
         win.setPosition(current_win.getPosition()[0],playlistwiny,false)
     }
+}
+
+document.onmouseenter = (event) => {
+    var el = document.getElementById('controlbtnset')
+    fadeIn(el,200)
+}
+
+document.onmouseleave = (event) => {
+    var el = document.getElementById('controlbtnset')
+    fadeOut(el,200)
 }
 
 playBtn.addEventListener('click', function(event) {
