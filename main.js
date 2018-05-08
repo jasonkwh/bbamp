@@ -22,7 +22,7 @@ function createWindow () {
         resizable:false,
         maximizable:false,
         alwaysOnTop:true,
-        backgroundColor:'#262626',
+        backgroundColor:'#262626'
     })
 
     win.loadURL(url.format({
