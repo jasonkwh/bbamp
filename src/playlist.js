@@ -1,6 +1,5 @@
 const electron = require('electron')
-const BrowserWindow = electron.remote.BrowserWindow
-const current_win = BrowserWindow.getFocusedWindow()
+const current_win = electron.remote.getCurrentWindow()
 
 const closeBtn = document.getElementById('closebutton')
 
