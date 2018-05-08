@@ -16,14 +16,13 @@ let winheight = 75
 
 function createWindow () {
     win = new BrowserWindow({
+        frame:false,
         width:winwidth,
         height:winheight,
-        frame:false,
         resizable:false,
         maximizable:false,
         alwaysOnTop:true,
         backgroundColor:'#262626',
-        titleBarStyle:'hidden'
     })
 
     win.loadURL(url.format({

@@ -4,6 +4,7 @@ const BrowserWindow = electron.remote.BrowserWindow
 
 const current_win = BrowserWindow.getFocusedWindow()
 const playlistBtn = document.getElementById('playlistbutton')
+const closeBtn = document.getElementById('closebutton')
 
 let win
 let winwidth = 300
@@ -66,6 +67,10 @@ document.onmouseleave = (event) => {
     fadeIn(songinfo,200)
 }
 
+closeBtn.addEventListener('click', function(event) {
+    current_win.close()
+})
+
 playlistBtn.addEventListener('click', function(event) {
     let pos = current_win.getPosition()
     if(pos[1]>(window.screen.height/2)) {
@@ -76,14 +81,13 @@ playlistBtn.addEventListener('click', function(event) {
     const modalPath = path.join('file://',__dirname,'playlist.html')
     if(win==null) {
         win = new BrowserWindow({
+            frame:false,
             width:winwidth,
             height:winheight,
-            frame:false,
             resizable:false,
             maximizable:false,
             alwaysOnTop:true,
             backgroundColor:'#262626',
-            titleBarStyle:'hidden',
             x:pos[0],
             y:playlistwiny
         })
