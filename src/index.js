@@ -8,12 +8,18 @@ const playlistBtn = document.getElementById('playlistbutton')
 
 let win
 
+document.onmouseup = (event) => {
+    if(win!=null) {
+        win.setPosition(current_win.getPosition()[0],current_win.getPosition()[1]+75,false)
+    }
+}
+
 playBtn.addEventListener('click', function(event) {
 
 })
 
 playlistBtn.addEventListener('click', function(event) {
-    const pos = current_win.getPosition()
+    let pos = current_win.getPosition()
     const modalPath = path.join('file://',__dirname,'playlist.html')
     if(win==null) {
         win = new BrowserWindow({
@@ -33,5 +39,7 @@ playlistBtn.addEventListener('click', function(event) {
         })
         win.loadURL(modalPath)
         win.show()
+    } else {
+        win.close()
     }
 })
