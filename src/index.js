@@ -5,18 +5,18 @@ const ipc = electron.ipcRenderer
 const current_win = electron.remote.getCurrentWindow()
 const playlistBtn = document.getElementById('playlistbutton')
 const closeBtn = document.getElementById('closebutton')
-
 let win
 let winwidth = 300
 let winheight = 250
 let curwinheight = 75
-var playlistwiny
+let playlistwiny
+let songdisplaymode = 0
 
 function fadeIn(el, time) {
     el.style.display = "block"
     el.style.opacity = 0;
-    var last = +new Date();
-    var tick = function() {
+    let last = +new Date();
+    let tick = function() {
         el.style.opacity = +el.style.opacity + (new Date() - last) / time;
         last = +new Date();
 
@@ -29,8 +29,8 @@ function fadeIn(el, time) {
 
 function fadeOut(el, time) {
     el.style.opacity = 1;
-    var last = new Date();
-    var tick = function() {
+    let last = new Date();
+    let tick = function() {
         el.style.opacity = el.style.opacity - (new Date() - last) / time;
         last = new Date();
 
@@ -40,6 +40,23 @@ function fadeOut(el, time) {
     };
     tick();
     el.style.display = "none"
+}
+
+setInterval(function(){ setSongDisplay(); }, 10000);
+function setSongDisplay() {
+    fadeOut(document.getElementById('songname'),200)
+    fadeOut(document.getElementById('artist'),200)
+    fadeIn(document.getElementById('songname'),200)
+    fadeIn(document.getElementById('artist'),200)
+    if(songdisplaymode==0) {
+        document.getElementById('songname').innerHTML = '<i class="fas fa-play"></i>&nbsp;Now Playing...'
+        document.getElementById('artist').innerHTML = 'Song Name'
+        songdisplaymode = 1
+    } else {
+        document.getElementById('songname').innerHTML = 'Song Name'
+        document.getElementById('artist').innerHTML = 'Artist'
+        songdisplaymode = 0
+    }
 }
 
 document.onmouseup = (event) => {

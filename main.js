@@ -5,7 +5,7 @@ const shell = require('electron').shell
 const ipc = require('electron').ipcMain
 
 //Audio Decoders
-var AV = require('av')
+let AV = require('av')
 require('flac.js')
 require('ogg.js')
 require('opus.js')
@@ -39,7 +39,7 @@ function createWindow () {
         app.quit()
     })
 
-    var menu = Menu.buildFromTemplate([
+    let menu = Menu.buildFromTemplate([
         {
             label: 'Menu',
             submenu: [
