@@ -54,17 +54,13 @@ document.onmouseup = (event) => {
 }
 
 document.onmouseenter = (event) => {
-    var songinfo = document.getElementById('songinfo')
-    fadeOut(songinfo,200)
-    var controlbtn = document.getElementById('controlbtnset')
-    fadeIn(controlbtn,200)
+    fadeOut(document.getElementById('songinfo'),200)
+    fadeIn(document.getElementById('controlbtnset'),200)
 }
 
 document.onmouseleave = (event) => {
-    var controlbtn = document.getElementById('controlbtnset')
-    fadeOut(controlbtn,200)
-    var songinfo = document.getElementById('songinfo')
-    fadeIn(songinfo,200)
+    fadeOut(document.getElementById('controlbtnset'),200)
+    fadeIn(document.getElementById('songinfo'),200)
 }
 
 closeBtn.addEventListener('click', function(event) {

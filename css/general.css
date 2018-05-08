@@ -10,6 +10,12 @@
     font-weight: 300;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Oswald';
+    src: url('../webfonts/Oswald-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
 body {
     -webkit-app-region:drag;
 }
@@ -69,6 +75,16 @@ body {
     font-family: 'Oswald', sans-serif;
     color:#e74c3c;
     margin:0;
+}
+#songduration {
+    font-family: 'Oswald', sans-serif;
+    font-size:22px;
+    color:#6a6a6a;
+    margin:0;
+    font-weight:200;
+    position:relative;
+    top:-25px;
+    left:190px;
 }
 input[type="submit"],
 input[type="reset"],
