@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Oswald';
+    src: url('../webfonts/Oswald-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('../webfonts/Oswald-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
 body {
     -webkit-app-region:drag;
 }
@@ -29,8 +41,8 @@ body {
     -webkit-appearance:none;
     appearance:none;
     position:relative;
-    top:-10px;
-    right:-130px;
+    top:17px;
+    right:-5px;
     width:150px;
     height:2px;
     background-color:#91312a;
@@ -52,6 +64,11 @@ body {
     border-style:none;
     color:#e74c3c;
     width:20px;
+}
+.songdesc {
+    font-family: 'Oswald', sans-serif;
+    color:#e74c3c;
+    margin:0;
 }
 input[type="submit"],
 input[type="reset"],

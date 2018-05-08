@@ -3,7 +3,6 @@ const path = require('path')
 const BrowserWindow = electron.remote.BrowserWindow
 
 const current_win = BrowserWindow.getFocusedWindow()
-const playBtn = document.getElementById('playbutton')
 const playlistBtn = document.getElementById('playlistbutton')
 
 let win
@@ -13,6 +12,7 @@ let curwinheight = 75
 var playlistwiny
 
 function fadeIn(el, time) {
+    el.style.display = "block"
     el.style.opacity = 0;
     var last = +new Date();
     var tick = function() {
@@ -38,6 +38,7 @@ function fadeOut(el, time) {
         }
     };
     tick();
+    el.style.display = "none"
 }
 
 document.onmouseup = (event) => {
@@ -52,18 +53,18 @@ document.onmouseup = (event) => {
 }
 
 document.onmouseenter = (event) => {
-    var el = document.getElementById('controlbtnset')
-    fadeIn(el,200)
+    var songinfo = document.getElementById('songinfo')
+    fadeOut(songinfo,200)
+    var controlbtn = document.getElementById('controlbtnset')
+    fadeIn(controlbtn,200)
 }
 
 document.onmouseleave = (event) => {
-    var el = document.getElementById('controlbtnset')
-    fadeOut(el,200)
+    var controlbtn = document.getElementById('controlbtnset')
+    fadeOut(controlbtn,200)
+    var songinfo = document.getElementById('songinfo')
+    fadeIn(songinfo,200)
 }
-
-playBtn.addEventListener('click', function(event) {
-
-})
 
 playlistBtn.addEventListener('click', function(event) {
     let pos = current_win.getPosition()
