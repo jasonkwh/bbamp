@@ -1,19 +1,19 @@
-const {app, BrowserWindow, Menu} = require('electron')
-const path = require('path')
-const url = require('url')
-const shell = require('electron').shell
-const ipc = require('electron').ipcMain
+const {app, BrowserWindow, Menu} = require('electron');
+const path = require('path');
+const url = require('url');
+const shell = require('electron').shell;
+const ipc = require('electron').ipcMain;
 
 //Audio Decoders
-let AV = require('av')
-require('flac.js')
-require('ogg.js')
-require('opus.js')
-require('vorbis.js')
+let AV = require('av');
+require('flac.js');
+require('ogg.js');
+require('opus.js');
+require('vorbis.js');
 
-let win
-let winwidth = 300
-let winheight = 75
+let win;
+const winwidth = 300;
+const winheight = 75;
 
 function createWindow () {
     win = new BrowserWindow({
@@ -24,20 +24,20 @@ function createWindow () {
         maximizable:false,
         alwaysOnTop:true,
         backgroundColor:'#262626'
-    })
+    });
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'src/index.html'),
         protocol: 'file:',
         slashes: true
-    }))
+    }));
 
-    win.webContents.openDevTools()
+    win.webContents.openDevTools();
 
     win.on('closed', () => {
-        win = null
-        app.quit()
-    })
+        win = null;
+        app.quit();
+    });
 
     let menu = Menu.buildFromTemplate([
         {
@@ -46,7 +46,7 @@ function createWindow () {
                 {
                     label: 'About bbAMP',
                     click() {
-                        shell.openExternal('https://github.com/jasonkwh')
+                        shell.openExternal('https://github.com/jasonkwh');
                     }
                 },
                 {
@@ -55,30 +55,30 @@ function createWindow () {
                 {
                     label: 'Open an Audio File',
                     click() {
-                        AV.Player.fromFile('output.wav').play()
+                        AV.Player.fromFile('output.wav').play();
                     }
                 },
                 {
                     label: 'Quit',
                     click() {
-                        app.quit()
+                        app.quit();
                     }
                 }
             ]
         }
-    ])
+    ]);
 
-    Menu.setApplicationMenu(menu)
+    Menu.setApplicationMenu(menu);
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-    app.quit()
-})
+    app.quit();
+});
 
 app.on('activate', () => {
     if (win === null) {
-        createWindow()
+        createWindow();
     }
-})
+});
