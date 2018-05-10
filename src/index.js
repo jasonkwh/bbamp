@@ -1,7 +1,6 @@
 const electron = require('electron');
 const path = require('path');
 const BrowserWindow = electron.remote.BrowserWindow;
-const ipc = electron.ipcRenderer;
 const current_win = electron.remote.getCurrentWindow();
 const playlistBtn = document.getElementById('playlistbutton');
 const closeBtn = document.getElementById('closebutton');

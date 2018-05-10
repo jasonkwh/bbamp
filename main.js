@@ -3,6 +3,8 @@ const path = require('path');
 const url = require('url');
 const shell = require('electron').shell;
 const ipc = require('electron').ipcMain;
+var Datastore = require('nedb')
+    , db = new Datastore({ filename: './songs.db', autoload: true });
 
 //Audio Decoders
 let AV = require('av');
@@ -68,6 +70,26 @@ function createWindow () {
 
     Menu.setApplicationMenu(menu);
 }
+
+ipc.on('addToPlaylist', function (event, arg) {
+    const {dialog} = require('electron');
+    let selectedfiles = dialog.showOpenDialog({
+        filters: [
+            {name: 'Audio Files', extensions: ['wav','flac','ogg','opus']}
+            ],
+        properties: ['openFile', 'multiSelections']
+    });
+    for(let i=0;i<selectedfiles.length;i++) {
+        selectedfiles[i] = { filelocation:selectedfiles[i], isRead:0 };
+    }
+    db.insert(selectedfiles, function (err, newDocs) {
+        if(err!=null) {
+            dialog.showMessageBox({ message: err });
+        } else {
+
+        }
+    });
+});
 
 app.on('ready', createWindow);
 
