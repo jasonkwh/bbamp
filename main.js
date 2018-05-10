@@ -4,16 +4,9 @@ const path = require('path');
 const url = require('url');
 const ipc = require('electron').ipcMain;
 const { exec } = require('child_process');
+let mm = require('music-metadata');
 var Datastore = require('nedb')
     , db = new Datastore({ filename: './songs.db', autoload: true });
-
-//Audio Decoders
-let AV = require('av');
-let mm = require('music-metadata');
-require('flac.js');
-require('ogg.js');
-require('opus.js');
-require('vorbis.js');
 
 let win;
 const winwidth = 300;
