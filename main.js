@@ -1,14 +1,15 @@
 /*jshint esversion: 6 */
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
 const ipc = require('electron').ipcMain;
-const { exec } = require('child_process'); //normal exec
+const { exec } = require('child_process');
 var Datastore = require('nedb')
     , db = new Datastore({ filename: './songs.db', autoload: true });
 
 //Audio Decoders
 let AV = require('av');
+let mm = require('music-metadata');
 require('flac.js');
 require('ogg.js');
 require('opus.js');
@@ -18,6 +19,11 @@ let win;
 const winwidth = 300;
 const winheight = 75;
 const projname = app.getName();
+let songname = "";
+let artist = "";
+let album = "";
+let fileext = "";
+let duration = 0;
 
 exec('mkdir -p ~/Documents/' + projname + '/');
 
@@ -45,11 +51,7 @@ function createWindow () {
 }
 
 ipc.on('addToPlaylist', function (event, arg) {
-    const {dialog} = require('electron');
     let selectedfiles = dialog.showOpenDialog({
-        filters: [
-            {name: 'Audio Files', extensions: ['wav','flac','ogg','opus']}
-            ],
         properties: ['openFile', 'multiSelections']
     });
     if(selectedfiles!=undefined) {
@@ -58,31 +60,50 @@ ipc.on('addToPlaylist', function (event, arg) {
         }
         db.insert(selectedfiles, function (err, newDocs) {
             if(err!=null) {
-                dialog.showMessageBox({ message: err });
+                console.error(err.message);
             } else {
                 for(let i=0;i<newDocs.length;i++) {
-                    checkSongMetadata(newDocs[i].filelocation)
+                    /*checkSongMetadata(newDocs[i].filelocation)
                         .then((result) => {
                             console.log(result);
                         })
                         .catch((e) => {
                             console.error('Failed to load audio file', e);
+                        });*/
+                    songname = "Unknown";
+                    artist = "Unknown";
+                    album = "Unknown";
+                    duration = 0;
+                    mm.parseFile(newDocs[i].filelocation, {duration:true,native:true,skipCovers:true})
+                        .then(function (metadata) {
+                            fileext = path.extname(newDocs[i].filelocation).toLowerCase();
+                            duration = metadata.format.duration;
+                            if(fileext==".wav" || fileext==".wave") {
+                                songname = path.basename(newDocs[i].filelocation);
+                            } else {
+                                if(metadata.common.title!=undefined) {
+                                    songname = metadata.common.title;
+                                }
+                                if(metadata.common.album!=undefined) {
+                                    album = metadata.common.album;
+                                }
+                                if(metadata.common.artist!=undefined) {
+                                    artist = metadata.common.artist;
+                                }
+                            }
+                        })
+                        .catch(function (err) {
+                            console.error(err.message);
+                            fileext = path.extname(newDocs[i].filelocation).toLowerCase();
+                            songname = path.basename(newDocs[i].filelocation);
                         });
-                    /*exec('mkdir -p ~/Documents/bbAMP/' + artist + '/');
-                    exec('mkdir -p ~/Documents/bbAMP/' + artist + '/' + album + '/');
-                    let newlocation = '~/Documents/bbAMP/' + artist + '/' + album + '/' + path.parse(filelocation).base;
-                    copyMusicFile(filelocation,newlocation);*/
                 }
             }
         });
     }
 });
 
-/*async function copyMusicFile(filelocation, newlocation) {
-    const { stdout, stderr } = await exec('cp -r ' + filelocation + ' ' + newlocation);
-}*/
-
-function checkSongMetadata(filelocation) {
+/*function checkSongMetadata(filelocation) {
     return new Promise((resolve,reject) => {
         let fileext = path.extname(filelocation).toLowerCase();
         let songname = "Unknown";
@@ -130,7 +151,7 @@ function checkSongDuration(filelocation,checkmode) {
             reject('check failed');
         }
     });
-}
+}*/
 
 app.on('ready', createWindow);
 

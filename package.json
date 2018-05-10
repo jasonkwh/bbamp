@@ -15,6 +15,7 @@
   "dependencies": {
     "av": "^0.4.9",
     "flac.js": "^0.2.1",
+    "music-metadata": "^0.11.4",
     "nedb": "^1.8.0",
     "ogg.js": "^0.1.0",
     "opus.js": "^0.1.1",
