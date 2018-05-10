@@ -1,9 +1,0 @@
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/install/local.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/list_install_components.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/rebuild_cache.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/edit_cache.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/Sample1.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/mac.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/install/strip.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/install.dir
-/Users/jasonkwh/Desktop/monkeys-audio-master/CMakeFiles/libmac.dir

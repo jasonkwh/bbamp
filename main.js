@@ -25,8 +25,6 @@ let album = "";
 let fileext = "";
 let duration = 0;
 
-exec('mkdir -p ~/Documents/' + projname + '/');
-
 function createWindow () {
     win = new BrowserWindow({
         frame:false,
@@ -56,7 +54,7 @@ ipc.on('addToPlaylist', function (event, arg) {
     });
     if(selectedfiles!=undefined) {
         for(let i=0;i<selectedfiles.length;i++) {
-            selectedfiles[i] = { filelocation:selectedfiles[i], isRead:0 };
+            selectedfiles[i] = { filelocation:selectedfiles[i] };
         }
         db.insert(selectedfiles, function (err, newDocs) {
             if(err!=null) {
