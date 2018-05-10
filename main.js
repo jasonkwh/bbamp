@@ -63,13 +63,6 @@ ipc.on('addToPlaylist', function (event, arg) {
                 console.error(err.message);
             } else {
                 for(let i=0;i<newDocs.length;i++) {
-                    /*checkSongMetadata(newDocs[i].filelocation)
-                        .then((result) => {
-                            console.log(result);
-                        })
-                        .catch((e) => {
-                            console.error('Failed to load audio file', e);
-                        });*/
                     songname = "Unknown";
                     artist = "Unknown";
                     album = "Unknown";
@@ -102,56 +95,6 @@ ipc.on('addToPlaylist', function (event, arg) {
         });
     }
 });
-
-/*function checkSongMetadata(filelocation) {
-    return new Promise((resolve,reject) => {
-        let fileext = path.extname(filelocation).toLowerCase();
-        let songname = "Unknown";
-        let artist = "Unknown";
-        let album = "Unknown";
-        let duration = 0;
-        if((fileext==".flac") || (fileext==".ogg") || (fileext==".opus") || (fileext==".wav")) {
-            checkSongDuration(filelocation,0)
-                .then((result) => {
-                    duration = result;
-                    let asset = AV.Asset.fromFile(filelocation);
-                    if(fileext==".wav") {
-                        songname = path.parse(filelocation).base;
-                        resolve({songname:songname,artist:artist,album:album,duration:duration});
-                    } else {
-                        asset.get('metadata', function(data) {
-                            songname = data.title;
-                            artist = data.artist;
-                            album = data.album;
-                            resolve({songname:songname,artist:artist,album:album,duration:duration});
-                        });
-                    }
-                })
-                .catch((e) => {
-                    console.error('Failed to check duration', e);
-                });
-        } else if(fileext==".ape") {
-            
-        } else {
-            reject('check failed');
-        }
-    });
-}
-
-function checkSongDuration(filelocation,checkmode) {
-    return new Promise((resolve,reject) => {
-        if(checkmode==0) {
-            let asset = AV.Asset.fromFile(filelocation);
-            asset.get('duration', function(data) {
-                resolve(data)
-            });
-        } else if(checkmode==1) {
-
-        } else {
-            reject('check failed');
-        }
-    });
-}*/
 
 app.on('ready', createWindow);
 
