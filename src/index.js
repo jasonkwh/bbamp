@@ -44,10 +44,10 @@ function fadeOut(el, time) {
 
 setInterval(function(){ setSongDisplay(); }, 10000);
 function setSongDisplay() {
-    fadeOut(document.getElementById('songname'),200);
-    fadeOut(document.getElementById('artist'),200);
-    fadeIn(document.getElementById('songname'),200);
-    fadeIn(document.getElementById('artist'),200);
+    fadeOut(document.getElementById('songname'),500);
+    fadeOut(document.getElementById('artist'),500);
+    fadeIn(document.getElementById('songname'),500);
+    fadeIn(document.getElementById('artist'),500);
     if(songdisplaymode==0) {
         document.getElementById('songname').innerHTML = '<i class="fas fa-play"></i>&nbsp;Now Playing';
         document.getElementById('artist').innerHTML = 'Song Name';
@@ -107,6 +107,7 @@ playlistBtn.addEventListener('click', function(event) {
         win.on('close',function() {
             win = null;
         });
+        win.webContents.openDevTools();
         win.loadURL(modalPath);
         win.show();
     } else {
