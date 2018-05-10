@@ -1,13 +1,13 @@
 {
-  "name": "bbamp",
-  "version": "0.0.1",
+  "name": "bbAMP",
+  "version": "0.0.2",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "author": "Jason Huang",
-  "license": "ISC",
+  "license": "(MIT OR Apache-2.0)",
   "devDependencies": {
     "electron": "^2.0.0",
     "electron-packager": "^12.0.2"
