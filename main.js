@@ -47,7 +47,7 @@ ipc.on('addToPlaylist', function (event, arg) {
     });
     if(selectedfiles!=undefined) {
         for(let i=0;i<selectedfiles.length;i++) {
-            selectedfiles[i] = { filelocation:selectedfiles[i] };
+            selectedfiles[i] = { recordtype:'playlist',filelocation:selectedfiles[i],nowplaying:0 };
         }
         db.insert(selectedfiles, function (err, newDocs) {
             if(err!=null) {
