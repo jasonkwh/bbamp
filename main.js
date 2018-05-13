@@ -3,7 +3,6 @@ const {app, BrowserWindow, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
 const ipc = require('electron').ipcMain;
-const { exec } = require('child_process');
 let mm = require('music-metadata');
 var Datastore = require('nedb')
     , db = new Datastore({ filename: './songs.db', autoload: true });
@@ -11,7 +10,6 @@ var Datastore = require('nedb')
 let win;
 const winwidth = 300;
 const winheight = 75;
-const projname = app.getName();
 let songname = "";
 let artist = "";
 let album = "";
@@ -47,12 +45,13 @@ ipc.on('addToPlaylist', function (event, arg) {
     });
     if(selectedfiles!=undefined) {
         for(let i=0;i<selectedfiles.length;i++) {
-            selectedfiles[i] = { recordtype:'playlist',filelocation:selectedfiles[i],nowplaying:0 };
+            selectedfiles[i] = { recordtype:'playlist',filelocation:selectedfiles[i] };
         }
         db.insert(selectedfiles, function (err, newDocs) {
             if(err!=null) {
                 console.error(err.message);
             } else {
+                console.log(newDocs);
                 for(let i=0;i<newDocs.length;i++) {
                     songname = "Unknown";
                     artist = "Unknown";
@@ -75,17 +74,22 @@ ipc.on('addToPlaylist', function (event, arg) {
                                     artist = metadata.common.artist;
                                 }
                             }
+                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id);
                         })
                         .catch(function (err) {
                             console.error(err.message);
-                            fileext = path.extname(newDocs[i].filelocation).toLowerCase();
                             songname = path.basename(newDocs[i].filelocation);
+                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id);
                         });
                 }
             }
         });
     }
 });
+
+function updateDatabaseRecord(songname,album,artist,duration,docsid) {
+
+}
 
 app.on('ready', createWindow);
 

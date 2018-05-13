@@ -104,6 +104,36 @@ body {
     top:5px;
     left:5px;
 }
+#playlist {
+    position:absolute;
+    top:22px;
+    left:4px;
+    font-size:12px;
+    text-align:center;
+    font-family: 'Oswald', sans-serif;
+    font-weight:300;
+    color:#6a6a6a;
+}
+#playlisttable {
+    display: block;
+    height: 305px;
+    overflow-y: scroll;
+}
+#playlisttable tr {
+    line-height: 16px;
+}
+#playlisttable ul {
+    list-style-type:none;
+    margin:0px 0px 0px -40px;
+}
+.playstatus {
+    color:#e74c3c;
+}
+.playlistsongname {
+    font-size:14px;
+    font-weight:500;
+    color:#e74c3c;
+}
 input[type="submit"],
 input[type="reset"],
 input[type="button"],

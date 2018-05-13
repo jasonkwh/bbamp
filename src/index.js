@@ -7,7 +7,7 @@ const playlistBtn = document.getElementById('playlistbutton');
 const closeBtn = document.getElementById('closebutton');
 let win;
 const winwidth = 300;
-const winheight = 250;
+const winheight = 350;
 const curwinheight = 75;
 let playlistwiny;
 let songdisplaymode = 0;
