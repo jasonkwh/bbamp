@@ -39,7 +39,7 @@ function createWindow () {
     });
 }
 
-ipc.on('addToPlaylist', function (event, arg) {
+ipc.on('addToDatabase', function (event, arg) {
     let selectedfiles = dialog.showOpenDialog({
         properties: ['openFile', 'multiSelections']
     });
@@ -75,7 +75,9 @@ ipc.on('addToPlaylist', function (event, arg) {
                             }
                             updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id)
                                 .then((result) => {
-                                    console.log(result);
+                                    if(result=="success") {
+                                        event.sender.send('addToPlaylist',{id:newDocs[i]._id,filelocation:newDocs[i].filelocation,songname:songname,artist:artist,duration:duration});
+                                    }
                                 })
                                 .catch((e) => {
                                     console.error(e);
@@ -86,7 +88,9 @@ ipc.on('addToPlaylist', function (event, arg) {
                             songname = path.basename(newDocs[i].filelocation);
                             updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id)
                                 .then((result) => {
-                                    console.log(result);
+                                    if(result=="success") {
+                                        event.sender.send('addToPlaylist',{id:newDocs[i]._id,filelocation:newDocs[i].filelocation,songname:songname,artist:artist,duration:duration});
+                                    }
                                 })
                                 .catch((e) => {
                                     console.error(e);
