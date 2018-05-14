@@ -131,10 +131,6 @@ body {
     height:308px;
     overflow-y: scroll;
 }
-#playlisttable ul {
-    list-style-type:none;
-    margin:0px 0px 0px -40px;
-}
 .playstatus {
     color:#e74c3c;
 }
@@ -142,6 +138,13 @@ body {
     font-size:14px;
     font-weight:500;
     color:#e74c3c;
+}
+.playlistitem {
+    background-color:#262626;
+    margin-left:-45px;
+}
+.playlistitem:hover {
+    cursor: pointer;
 }
 input[type="submit"],
 input[type="reset"],
