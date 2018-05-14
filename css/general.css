@@ -126,12 +126,10 @@ body {
     color:#6a6a6a;
 }
 #playlisttable {
-    display: block;
-    height: 305px;
+    list-style-type:none;
+    margin:0;
+    height:308px;
     overflow-y: scroll;
-}
-#playlisttable tr {
-    line-height: 16px;
 }
 #playlisttable ul {
     list-style-type:none;
