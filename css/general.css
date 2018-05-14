@@ -118,7 +118,7 @@ body {
 #playlist {
     position:absolute;
     top:22px;
-    left:4px;
+    left:0px;
     font-size:12px;
     text-align:center;
     font-family: 'Oswald', sans-serif;
@@ -145,6 +145,7 @@ body {
 }
 .playlistitem:hover {
     cursor: pointer;
+    background-color:#303030;
 }
 input[type="submit"],
 input[type="reset"],
