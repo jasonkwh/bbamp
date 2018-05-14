@@ -44,16 +44,12 @@ function fadeOut(el, time) {
 
 setInterval(function(){ setSongDisplay(); }, 10000);
 function setSongDisplay() {
-    fadeOut(document.getElementById('songname'),500);
     fadeOut(document.getElementById('artist'),500);
-    fadeIn(document.getElementById('songname'),500);
     fadeIn(document.getElementById('artist'),500);
     if(songdisplaymode==0) {
-        document.getElementById('songname').innerHTML = '<i class="fas fa-play"></i>&nbsp;Now Playing';
-        document.getElementById('artist').innerHTML = 'Song Name';
+        document.getElementById('artist').innerHTML = 'Album';
         songdisplaymode = 1;
     } else {
-        document.getElementById('songname').innerHTML = 'Song Name';
         document.getElementById('artist').innerHTML = 'Artist';
         songdisplaymode = 0;
     }
