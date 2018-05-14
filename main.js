@@ -10,11 +10,6 @@ var Datastore = require('nedb')
 let win;
 const winwidth = 300;
 const winheight = 75;
-let songname = "";
-let artist = "";
-let album = "";
-let fileext = "";
-let duration = 0;
 
 function createWindow () {
     win = new BrowserWindow({
@@ -45,56 +40,28 @@ ipc.on('addToDatabase', function (event, arg) {
     });
     if(selectedfiles!=undefined) {
         for(let i=0;i<selectedfiles.length;i++) {
-            selectedfiles[i] = { recordtype:'playlist',filelocation:selectedfiles[i] };
+            selectedfiles[i] = { recordtype:'playlist',filelocation:selectedfiles[i],songname:path.basename(selectedfiles[i]),album:"Unknown",artist:"Unknown",duration:"0:00.00" };
         }
         db.insert(selectedfiles, function (err, newDocs) {
             if(err!=null) {
                 console.error(err.message);
             } else {
                 for(let i=0;i<newDocs.length;i++) {
-                    songname = "Unknown";
-                    artist = "Unknown";
-                    album = "Unknown";
-                    duration = "0:00.00";
-                    mm.parseFile(newDocs[i].filelocation, {duration:true,native:true,skipCovers:true})
-                        .then(function (metadata) {
-                            fileext = path.extname(newDocs[i].filelocation).toLowerCase();
-                            duration = convertSecondsToMMSS(metadata.format.duration);
-                            if(fileext==".wav" || fileext==".wave") {
-                                songname = path.basename(newDocs[i].filelocation);
-                            } else {
-                                if(metadata.common.title!=undefined) {
-                                    songname = metadata.common.title;
-                                }
-                                if(metadata.common.album!=undefined) {
-                                    album = metadata.common.album;
-                                }
-                                if(metadata.common.artist!=undefined) {
-                                    artist = metadata.common.artist;
-                                }
-                            }
-                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id)
-                                .then((result) => {
-                                    if(result=="success") {
-                                        event.sender.send('addToPlaylist',{id:newDocs[i]._id,filelocation:newDocs[i].filelocation,songname:songname,artist:artist,duration:duration});
+                    getSongMetadata(newDocs[i].filelocation)
+                        .then((result) => {
+                            updateDatabaseRecord(result.songname,result.album,result.artist,result.duration,newDocs[i]._id)
+                                .then((result2) => {
+                                    if(result2=="success") {
+                                        event.sender.send('addToPlaylist',{id:newDocs[i]._id,filelocation:newDocs[i].filelocation,songname:result.songname,artist:result.artist,duration:result.duration});
                                     }
                                 })
                                 .catch((e) => {
-                                    console.error(e);
+                                    console.error(e.message);
                                 });
                         })
-                        .catch(function (err) {
-                            console.error(err.message);
-                            songname = path.basename(newDocs[i].filelocation);
-                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id)
-                                .then((result) => {
-                                    if(result=="success") {
-                                        event.sender.send('addToPlaylist',{id:newDocs[i]._id,filelocation:newDocs[i].filelocation,songname:songname,artist:artist,duration:duration});
-                                    }
-                                })
-                                .catch((e) => {
-                                    console.error(e);
-                                });
+                        .catch((e) => {
+                            event.sender.send('addToPlaylist',{id:newDocs[i]._id,filelocation:newDocs[i].filelocation,songname:path.basename(newDocs[i].filelocation),artist:"Unknown",duration:"0:00.00"});
+                            console.error(e.message);
                         });
                 }
             }
@@ -108,11 +75,43 @@ function convertSecondsToMMSS(seconds) {
     return mins + ":" + secs;
 }
 
+function getSongMetadata(filelocation) {
+    return new Promise((resolve,reject) => {
+        let songname = "Unknown";
+        let artist = "Unknown";
+        let album = "Unknown";
+        let duration = "0:00.00";
+        let fileext = "";
+        mm.parseFile(filelocation, {duration:true,native:true,skipCovers:true})
+            .then(function (metadata) {
+                fileext = path.extname(filelocation).toLowerCase();
+                duration = convertSecondsToMMSS(metadata.format.duration);
+                if(fileext==".wav" || fileext==".wave") {
+                    songname = path.basename(filelocation);
+                } else {
+                    if(metadata.common.title!=undefined) {
+                        songname = metadata.common.title;
+                    }
+                    if(metadata.common.album!=undefined) {
+                        album = metadata.common.album;
+                    }
+                    if(metadata.common.artist!=undefined) {
+                        artist = metadata.common.artist;
+                    }
+                }
+                resolve({songname:songname,artist:artist,album:album,duration:duration});
+            })
+            .catch(function (err) {
+                reject(err);
+            });
+    });
+}
+
 function updateDatabaseRecord(songname,album,artist,duration,docsid) {
     return new Promise((resolve,reject) => {
         db.update({ _id: docsid }, { $set: { songname:songname,album:album,artist:artist,duration:duration } }, {}, function (err) {
             if(err!=null) {
-                reject(err.message);
+                reject(err);
             } else {
                 resolve("success");
             }
