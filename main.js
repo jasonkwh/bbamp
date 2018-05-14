@@ -51,16 +51,15 @@ ipc.on('addToPlaylist', function (event, arg) {
             if(err!=null) {
                 console.error(err.message);
             } else {
-                console.log(newDocs);
                 for(let i=0;i<newDocs.length;i++) {
                     songname = "Unknown";
                     artist = "Unknown";
                     album = "Unknown";
-                    duration = 0;
+                    duration = "0:00.00";
                     mm.parseFile(newDocs[i].filelocation, {duration:true,native:true,skipCovers:true})
                         .then(function (metadata) {
                             fileext = path.extname(newDocs[i].filelocation).toLowerCase();
-                            duration = metadata.format.duration;
+                            duration = convertSecondsToMMSS(metadata.format.duration);
                             if(fileext==".wav" || fileext==".wave") {
                                 songname = path.basename(newDocs[i].filelocation);
                             } else {
@@ -74,12 +73,24 @@ ipc.on('addToPlaylist', function (event, arg) {
                                     artist = metadata.common.artist;
                                 }
                             }
-                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id);
+                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id)
+                                .then((result) => {
+                                    console.log(result);
+                                })
+                                .catch((e) => {
+                                    console.error(e);
+                                });
                         })
                         .catch(function (err) {
                             console.error(err.message);
                             songname = path.basename(newDocs[i].filelocation);
-                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id);
+                            updateDatabaseRecord(songname,album,artist,duration,newDocs[i]._id)
+                                .then((result) => {
+                                    console.log(result);
+                                })
+                                .catch((e) => {
+                                    console.error(e);
+                                });
                         });
                 }
             }
@@ -87,8 +98,22 @@ ipc.on('addToPlaylist', function (event, arg) {
     }
 });
 
-function updateDatabaseRecord(songname,album,artist,duration,docsid) {
+function convertSecondsToMMSS(seconds) {
+    let mins = parseInt(seconds/60);
+    let secs = (seconds-(mins*60)).toFixed(2);
+    return mins + ":" + secs;
+}
 
+function updateDatabaseRecord(songname,album,artist,duration,docsid) {
+    return new Promise((resolve,reject) => {
+        db.update({ _id: docsid }, { $set: { songname:songname,album:album,artist:artist,duration:duration } }, {}, function (err) {
+            if(err!=null) {
+                reject(err.message);
+            } else {
+                resolve("success");
+            }
+        });
+    });
 }
 
 app.on('ready', createWindow);
