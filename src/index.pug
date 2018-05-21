@@ -1,33 +1,34 @@
 doctype html
-head
-    meta(charset='UTF-8')
-    title bbAMP
-    link(rel='stylesheet' href='../css/fontawesome-all.min.css')
-    link(rel='stylesheet' href='../css/general.css')
-body
-    span(style='position:absolute;top:2px;left:4px')
-        button#closebutton.topbtn(type='button' title='Close bbAMP')
-            i.fas.fa-times
-    span(style='position:absolute;top:2px;right:4px')
-        button.topbtn(type='button' title='Repeat')
-            i.fas.fa-redo
-        button.topbtn(type='button' title='Random')
-            i.fas.fa-random
-        button#playlistbutton.topbtn(type='button' title='Playlist')
-            i.fas.fa-list-ul
-    span#songinfo(style='position:relative;top:5px;left:8px')
-        p#songname Song Name
-        p#artist Artist
-        p#songduration 0:00/3:00
-    span#controlbtnset
-        span(style='position:relative;top:20px')
-            button.controlbtns(type='button' title='Previous Song')
-                i.fas.fa-step-backward
-            button#playbutton(type='button' title='Play')
-                i.fas.fa-play
-            button.controlbtns(type='button' title='Stop')
-                i.fas.fa-stop
-            button.controlbtns(type='button' title='Next Song')
-                i.fas.fa-step-forward
-        input.progressslider(type='range' min='1' max='100' value='1')
-    script(src='index.js')
+html
+    head
+        meta(charset='UTF-8')
+        title='bbAMP'
+        link(rel='stylesheet' href='../css/fontawesome-all.min.css')
+        link(rel='stylesheet' href='../css/general.css')
+    body
+        span(style='position:absolute;top:2px;left:4px')
+            button#closebutton.topbtn(type='button' title='Close bbAMP')
+                i.fas.fa-times
+        span(style='position:absolute;top:2px;right:4px')
+            button.topbtn(type='button' title='Repeat')
+                i.fas.fa-redo
+            button.topbtn(type='button' title='Random')
+                i.fas.fa-random
+            button#playlistbutton.topbtn(type='button' title='Playlist')
+                i.fas.fa-list-ul
+        span#songinfo(style='position:relative;top:5px;left:8px')
+            p#songname Song Name
+            p#artist Artist
+            p#songduration 0:00/3:00
+        span#controlbtnset
+            span(style='position:relative;top:20px')
+                button.controlbtns(type='button' title='Previous Song')
+                    i.fas.fa-step-backward
+                button#playbutton(type='button' title='Play')
+                    i.fas.fa-play
+                button.controlbtns(type='button' title='Stop')
+                    i.fas.fa-stop
+                button.controlbtns(type='button' title='Next Song')
+                    i.fas.fa-step-forward
+            input.progressslider(type='range' min='1' max='100' value='1')
+        script(src='index.js')
