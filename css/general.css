@@ -26,6 +26,8 @@ body {
     border-radius:30px;
     width:25px;
     height:25px;
+    margin-left:2px;
+    margin-right:2px;
 }
 .controlbtns:hover {
     background-color:#e74c3c;
@@ -38,6 +40,8 @@ body {
     border-radius:30px;
     width:35px;
     height:35px;
+    margin-left:2px;
+    margin-right:2px;
 }
 #playbutton:hover {
     background-color:#e74c3c;

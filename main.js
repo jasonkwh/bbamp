@@ -21,6 +21,7 @@ function createWindow () {
         alwaysOnTop:true,
         backgroundColor:'#262626'
     });
+    win.webContents.openDevTools();
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'src/index.html'),

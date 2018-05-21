@@ -103,7 +103,6 @@ playlistBtn.addEventListener('click', function(event) {
         win.on('close',function() {
             win = null;
         });
-        win.webContents.openDevTools();
         win.loadURL(modalPath);
         win.show();
     } else {
