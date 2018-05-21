@@ -3,20 +3,20 @@ html
     head
         meta(charset='UTF-8')
         title='bbAMP'
-        link(rel='stylesheet',href='../css/fontawesome-all.min.css')
-        link(rel='stylesheet',href='../css/general.css')
+        link(rel='stylesheet' href='../css/fontawesome-all.min.css')
+        link(rel='stylesheet' href='../css/general.css')
     body
         span(style='position:absolute;top:2px;left:4px')
-            button(type='button',title='Close Window')#closebutton.topbtn
+            button(type='button' title='Close Window')#closebutton.topbtn
                 i.fas.fa-times
         span(style='position:absolute;top:2px;right:4px')
             i.fas.fa-search.searchicon
-            input(type='text',placeholder='Search Playlist').searchbar
+            input(type='text' placeholder='Search Playlist').searchbar
         span#playlist
             ul#playlisttable
         span(style='position:absolute;bottom:2px;left:4px')
-            button(type='button',title='Add to Playlist')#playlistbtn.topbtn
+            button(type='button' title='Add to Playlist')#playlistbtn.topbtn
                 i.fas.fa-plus
-            button(type='button',title='Remove from Playlist').topbtn
+            button(type='button' title='Remove from Playlist').topbtn
                 i.fas.fa-minus
         script(src='playlist.js')
