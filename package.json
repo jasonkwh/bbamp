@@ -9,11 +9,12 @@
   "author": "Jason Huang",
   "license": "(MIT OR Apache-2.0)",
   "devDependencies": {
-    "electron": "^2.0.0",
-    "electron-packager": "^12.0.2"
+    "electron": "^2.0.2",
+    "electron-packager": "^12.1.0"
   },
   "dependencies": {
-    "music-metadata": "^0.11.4",
+    "ffbinaries": "^1.1.0",
+    "music-metadata": "^0.11.5",
     "nedb": "^1.8.0",
     "sortablejs": "^1.7.0"
   }
