@@ -1,155 +1,168 @@
 @font-face {
-    font-family: 'Oswald';
-    src: url('../webfonts/Oswald-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
+  font-family: 'Oswald';
+  src: url('../webfonts/Oswald-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'Oswald';
-    src: url('../webfonts/Oswald-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
+  font-family: 'Oswald';
+  src: url('../webfonts/Oswald-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'Oswald';
-    src: url('../webfonts/Oswald-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
+  font-family: 'Oswald';
+  src: url('../webfonts/Oswald-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
 }
 body {
-    -webkit-app-region:drag;
+  -webkit-app-region: drag;
+}
+.controlbuttonstyle {
+  background-color: transparent;
+  border-color: #e74c3c;
+  color: #e74c3c;
+  border-radius: 30px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.controlbuttonstyle :hover {
+  background-color: #e74c3c;
+  color: #262626;
 }
 .controlbtns {
-    background-color:transparent;
-    border-color:#e74c3c;
-    color:#e74c3c;
-    border-radius:30px;
-    width:25px;
-    height:25px;
-    margin-left:2px;
-    margin-right:2px;
+  background-color: transparent;
+  border-color: #e74c3c;
+  color: #e74c3c;
+  border-radius: 30px;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 25px;
+  height: 25px;
 }
-.controlbtns:hover {
-    background-color:#e74c3c;
-    color:#262626;
+.controlbtns :hover {
+  background-color: #e74c3c;
+  color: #262626;
 }
 #playbutton {
-    background-color:transparent;
-    border-color:#e74c3c;
-    color:#e74c3c;
-    border-radius:30px;
-    width:35px;
-    height:35px;
-    margin-left:2px;
-    margin-right:2px;
+  background-color: transparent;
+  border-color: #e74c3c;
+  color: #e74c3c;
+  border-radius: 30px;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 35px;
+  height: 35px;
 }
-#playbutton:hover {
-    background-color:#e74c3c;
-    color:#262626;
+#playbutton :hover {
+  background-color: #e74c3c;
+  color: #262626;
 }
 .progressslider {
-    -webkit-appearance:none;
-    appearance:none;
-    position:relative;
-    top:17px;
-    right:-5px;
-    width:150px;
-    height:2px;
-    background-color:#91312a;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 17px;
+  right: -5px;
+  width: 150px;
+  height: 2px;
+  background-color: #91312a;
 }
 .progressslider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 4px;
-    height: 13px;
-    background-color:#e74c3c;
-}
-.progressslider::-moz-range-thumb {
-    width: 4px;
-    height: 13px;
-    background-color:#e74c3c;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 4px;
+  height: 13px;
+  background-color: #e74c3c;
 }
 .topbtn {
-    background-color:transparent;
-    border-style:none;
-    color:#e74c3c;
-    width:20px;
+  background-color: transparent;
+  border-style: none;
+  color: #e74c3c;
+  width: 20px;
+}
+.normalsonginfo {
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  top: 5px;
+  margin: 0;
+  color: #e74c3c;
 }
 #songname {
-    font-family: 'Oswald', sans-serif;
-    font-weight:500;
-    position:relative;
-    top:5px;
-    color:#e74c3c;
-    margin:0;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  top: 5px;
+  margin: 0;
+  color: #e74c3c;
+  font-weight: 500;
 }
 #artist {
-    font-family: 'Oswald', sans-serif;
-    font-weight:300;
-    position:relative;
-    top:5px;
-    color:#e74c3c;
-    margin:0;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  top: 5px;
+  margin: 0;
+  color: #e74c3c;
+  font-weight: 300;
 }
 #songduration {
-    font-family: 'Oswald', sans-serif;
-    font-size:22px;
-    color:#6a6a6a;
-    margin:0;
-    font-weight:200;
-    position:relative;
-    top:-25px;
-    left:190px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  color: #6a6a6a;
+  margin: 0;
+  font-weight: 200;
+  position: relative;
+  top: -25px;
+  left: 190px;
 }
 .searchbar {
-    background-color:transparent;
-    font-family: 'Oswald', sans-serif;
-    font-weight:300;
-    font-size:10px;
-    color:#e74c3c;
-    border:1px #e74c3c solid;
-    border-radius:10px;
-    padding-left:18px;
-    width:250px;
+  background-color: transparent;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  color: #e74c3c;
+  border: 1px #e74c3c solid;
+  border-radius: 10px;
+  padding-left: 18px;
+  width: 250px;
 }
 .searchicon {
-    color:#e74c3c;
-    font-size:10px;
-    position:absolute;
-    top:5px;
-    left:5px;
+  color: #e74c3c;
+  font-size: 10px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 #playlist {
-    position:absolute;
-    top:22px;
-    left:0px;
-    font-size:12px;
-    text-align:center;
-    font-family: 'Oswald', sans-serif;
-    font-weight:300;
-    color:#6a6a6a;
+  position: absolute;
+  top: 22px;
+  left: 0px;
+  font-size: 12px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  color: #6a6a6a;
 }
 #playlisttable {
-    list-style-type:none;
-    margin:0;
-    height:308px;
-    overflow-y: scroll;
+  list-style-type: none;
+  margin: 0;
+  height: 308px;
+  overflow-y: scroll;
 }
 .playstatus {
-    color:#e74c3c;
+  color: #e74c3c;
 }
-.playlistsongname {
-    font-size:14px;
-    font-weight:500;
-    color:#e74c3c;
+.playstatus .playlistsongname {
+  font-size: 14px;
+  font-weight: 500;
 }
 .playlistitem {
-    background-color:#262626;
-    margin-left:-45px;
+  background-color: #262626;
+  margin-left: -45px;
 }
-.playlistitem:hover {
-    cursor: pointer;
-    background-color:#303030;
+.playlistitem :hover {
+  cursor: pointer;
+  background-color: #303030;
 }
 input[type="submit"],
 input[type="reset"],
@@ -158,5 +171,6 @@ input[type="text"],
 input[type="range"],
 button,
 textarea {
-    -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag;
 }
+/*# sourceMappingURL=general.css.map */

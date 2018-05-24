@@ -1,0 +1,153 @@
+@normal-red:#e74c3c;
+@bg-color:#262626;
+@slider-red:#91312a;
+@slite-grey:#6a6a6a;
+@font-face {
+  font-family: 'Oswald';
+  src: url('../webfonts/Oswald-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../webfonts/Oswald-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../webfonts/Oswald-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+body {
+  -webkit-app-region:drag;
+}
+.controlbuttonstyle {
+  background-color:transparent;
+  border-color:@normal-red;
+  color:@normal-red;
+  border-radius:30px;
+  margin-left:2px;
+  margin-right:2px;
+  :hover {
+    background-color:@normal-red;
+    color:@bg-color;
+  }
+}
+.controlbtns {
+  .controlbuttonstyle;
+  width:25px;
+  height:25px;
+}
+#playbutton {
+  .controlbuttonstyle;
+  width:35px;
+  height:35px;
+}
+.progressslider {
+  -webkit-appearance:none;
+  appearance:none;
+  position:relative;
+  top:17px;
+  right:-5px;
+  width:150px;
+  height:2px;
+  background-color:@slider-red;
+}
+.progressslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 4px;
+  height: 13px;
+  background-color:@normal-red;
+}
+.topbtn {
+  background-color:transparent;
+  border-style:none;
+  color:@normal-red;
+  width:20px;
+}
+.normalsonginfo {
+  font-family: 'Oswald', sans-serif;
+  position:relative;
+  top:5px;
+  margin:0;
+  color:@normal-red;
+}
+#songname {
+  .normalsonginfo;
+  font-weight:500;
+}
+#artist {
+  .normalsonginfo;
+  font-weight:300;
+}
+#songduration {
+  font-family: 'Oswald', sans-serif;
+  font-size:22px;
+  color:@slite-grey;
+  margin:0;
+  font-weight:200;
+  position:relative;
+  top:-25px;
+  left:190px;
+}
+.searchbar {
+  background-color:transparent;
+  font-family: 'Oswald', sans-serif;
+  font-weight:300;
+  font-size:10px;
+  color:@normal-red;
+  border:1px @normal-red solid;
+  border-radius:10px;
+  padding-left:18px;
+  width:250px;
+}
+.searchicon {
+  color:@normal-red;
+  font-size:10px;
+  position:absolute;
+  top:5px;
+  left:5px;
+}
+#playlist {
+  position:absolute;
+  top:22px;
+  left:0px;
+  font-size:12px;
+  text-align:center;
+  font-family: 'Oswald', sans-serif;
+  font-weight:300;
+  color:@slite-grey;
+}
+#playlisttable {
+  list-style-type:none;
+  margin:0;
+  height:308px;
+  overflow-y: scroll;
+}
+.playstatus {
+  color:@normal-red;
+  .playlistsongname {
+    font-size:14px;
+    font-weight:500;
+  }
+}
+.playlistitem {
+  background-color:@bg-color;
+  margin-left:-45px;
+  :hover {
+    cursor: pointer;
+    background-color:#303030;
+  }
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+input[type="range"],
+button,
+textarea {
+  -webkit-app-region: no-drag;
+}
