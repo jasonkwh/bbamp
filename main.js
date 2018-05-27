@@ -15,12 +15,36 @@ const winwidth = 300;
 const winheight = 75;
 let ffwin;
 
+function ffGetOsAndArch() {
+    let ffplatform;
+    if(process.platform=='darwin') {
+        ffplatform = 'osx-64';
+    } else if(process.platform=='win32') {
+        if(process.arch=='x64') {
+            ffplatform = 'windows-64';
+        } else if(process.arch=='ia32') {
+            ffplatform = 'windows-32';
+        }
+    } else if(process.platform=='linux') {
+        if(process.arch=='x64') {
+            ffplatform = 'linux-64';
+        } else if(process.arch=='ia32') {
+            ffplatform = 'linux-32';
+        } else if(process.arch=='arm') {
+            ffplatform = 'linux-armel';
+        } else if(process.arch=='arm64') {
+            ffplatform = 'linux-armhf';
+        }
+    }
+    return ffplatform;
+}
+
 function createWindow () {
     if (fs.existsSync(ffdest)) {
         mainWindow();
     } else {
         ffdownloadwindow();
-        ffbinaries.downloadBinaries(['ffplay'],{platform:'osx-64',quiet:true,destination:ffdest}, function () {
+        ffbinaries.downloadBinaries(['ffplay'],{platform:ffGetOsAndArch(),quiet:true,destination:ffdest}, function () {
             ffwin.hide();
             mainWindow();
         });
