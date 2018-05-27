@@ -23,6 +23,15 @@
 body {
   -webkit-app-region:drag;
 }
+#ffdownloadlabel {
+  color:@slite-grey;
+  font-family: 'Oswald', sans-serif;
+  font-weight:200;
+  font-size:12px;
+  position:absolute;
+  top:15px;
+  left:25px;
+}
 .controlbuttonstyle {
   background-color:transparent;
   border-color:@normal-red;
@@ -85,10 +94,10 @@ body {
 }
 #songduration {
   font-family: 'Oswald', sans-serif;
+  font-weight:200;
   font-size:22px;
   color:@slite-grey;
   margin:0;
-  font-weight:200;
   position:relative;
   top:-25px;
   left:190px;
@@ -129,10 +138,11 @@ body {
 }
 .playstatus {
   color:@normal-red;
-  .playlistsongname {
-    font-size:14px;
-    font-weight:500;
-  }
+}
+.playlistsongname {
+  font-size:14px;
+  font-weight:500;
+  .playstatus;
 }
 .playlistitem {
   background-color:@bg-color;

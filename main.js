@@ -3,15 +3,31 @@ const {app, BrowserWindow, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
 const ipc = require('electron').ipcMain;
+const fs = require('fs');
 let mm = require('music-metadata');
-var Datastore = require('nedb')
-    , db = new Datastore({ filename: './songs.db', autoload: true });
+let ffbinaries = require('ffbinaries');
+let ffdest = __dirname+'/binaries';
+let Datastore = require('nedb')
+    , db = new Datastore({ filename: __dirname+'/songs.db', autoload: true });
 
 let win;
 const winwidth = 300;
 const winheight = 75;
+let ffwin;
 
 function createWindow () {
+    if (fs.existsSync(ffdest)) {
+        mainWindow();
+    } else {
+        ffdownloadwindow();
+        ffbinaries.downloadBinaries(['ffplay'],{platform:'osx-64',quiet:true,destination:ffdest}, function () {
+            ffwin.hide();
+            mainWindow();
+        });
+    }
+}
+
+function mainWindow() {
     win = new BrowserWindow({
         frame:false,
         width:winwidth,
@@ -21,17 +37,34 @@ function createWindow () {
         alwaysOnTop:true,
         backgroundColor:'#262626'
     });
-    win.webContents.openDevTools();
-
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'src/index.html'),
         protocol: 'file:',
         slashes: true
     }));
-
     win.on('closed', () => {
         win = null;
         app.quit();
+    });
+}
+
+function ffdownloadwindow() {
+    ffwin = new BrowserWindow({
+        frame:false,
+        width:200,
+        height:50,
+        resizable:false,
+        maximizable:false,
+        alwaysOnTop:true,
+        backgroundColor:'#262626'
+    });
+    ffwin.loadURL(url.format({
+        pathname: path.join(__dirname, 'src/ffdownload.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+    ffwin.on('closed', () => {
+        ffwin = null;
     });
 }
 
